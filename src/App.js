@@ -8,7 +8,11 @@ function App() {
   const [inputValue, setInputValue] = useState("");
   const [todos, setTodos] = useState([{}]);
 
-  function testFunction(event) {
+  function updateTodo(event) {
+    setInputValue(event.target.value);
+  }
+
+  function handleSubmit(event) {
     event.preventDefault();
     const newTodo = { _id: Date.now(), text: inputValue };
     setTodos([...todos, newTodo]);
@@ -18,19 +22,8 @@ function App() {
   return (
     <div className="App">
       <Title />
-      <Form testFunction={testFunction} />
+      <Form updateTodo={updateTodo} handleSubmit={handleSubmit} />
       <Todo />
-      <p>
-        Edit <code>src/App.js</code> and save to reload.
-      </p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
     </div>
   );
 }
